@@ -5,50 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRIESTE</title>
     <style>
+        /* Stili generali */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9; /* Sfondo più chiaro */
             color: #333;
+            line-height: 1.8; /* Aumento dello spazio tra le righe */
         }
+
+        /* Intestazione */
         header {
-            background-color: #4CAF50;
+            background-color: #2c3e50; /* Colore più elegante */
             color: white;
-            padding: 20px;
+            padding: 40px 20px; /* Più spazio interno */
             text-align: center;
         }
-        nav {
-            background-color: #333;
-            overflow: hidden;
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem; /* Titolo più grande */
         }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem; /* Sottotitolo più grande */
+        }
+
+        /* Menu di navigazione */
+        nav {
+            background-color: #34495e; /* Colore coordinato con l'header */
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombra per un effetto più moderno */
+        }
+
         nav a {
             float: left;
             display: block;
             color: white;
             text-align: center;
-            padding: 14px 20px;
+            padding: 16px 20px; /* Più spazio tra i link */
             text-decoration: none;
+            font-size: 1.1rem; /* Testo più grande */
+            transition: background-color 0.3s; /* Transizione al passaggio del mouse */
         }
+
         nav a:hover {
-            background-color: #575757;
+            background-color: #1abc9c; /* Colore al passaggio del mouse */
         }
+
+        /* Sezioni */
         section {
-            padding: 20px;
+            padding: 40px 20px; /* Più spazio interno */
+            max-width: 800px; /* Limite di larghezza per migliorare la leggibilità */
+            margin: 0 auto; /* Centratura delle sezioni */
         }
+
+        section h2 {
+            color: #2c3e50; /* Colore coordinato con l'header */
+            font-size: 2rem; /* Titolo più grande */
+            margin-bottom: 20px; /* Più spazio sotto il titolo */
+        }
+
+        section p, section ul {
+            font-size: 1.1rem; /* Testo più grande */
+            margin-bottom: 20px; /* Più spazio tra i paragrafi */
+        }
+
+        section ul {
+            padding-left: 20px; /* Spaziatura per le liste */
+        }
+
+        section ul li {
+            margin-bottom: 10px; /* Più spazio tra gli elementi della lista */
+        }
+
+        /* Footer */
         footer {
-            background-color: #333;
+            background-color: #34495e; /* Colore coordinato con il menu */
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 20px; /* Più spazio interno */
             position: fixed;
             bottom: 0;
             width: 100%;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Ombra per un effetto più moderno */
         }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Galleria (se vuoi aggiungere immagini in futuro) */
         .gallery img {
             width: 100%;
             max-width: 300px;
             margin: 10px;
+            border-radius: 8px; /* Bordi arrotondati per le immagini */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombra per un effetto più moderno */
         }
     </style>
 </head>
