@@ -4,42 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trieste</title>
-    <!-- Importa il font Dekko da Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dekko&display=swap" rel="stylesheet">
     <style>
-        /* Stili generali */
         body {
-            font-family: 'Dekko', cursive; /* Usa Dekko come font principale */
+            font-family: 'Dekko', cursive;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9; /* Sfondo più chiaro */
+            background-color: #f9f9f9;
             color: #333;
-            line-height: 1.8; /* Più spazio tra le righe */
+            line-height: 1.8;
         }
 
-        /* Intestazione */
-        header {
-            background-color: #2c3e50; /* Colore più elegante */
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Trieste_from_its_castle_01.jpg/1200px-Trieste_from_its_castle_01.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             color: white;
-            padding: 40px 20px; /* Più spazio interno */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin: 20px 0 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
             text-align: center;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem; /* Titolo più grande */
+            font-size: 2.5rem;
         }
 
         header p {
             margin: 10px 0 0;
-            font-size: 1.2rem; /* Sottotitolo più grande */
+            font-size: 1.2rem;
         }
 
-        /* Menu di navigazione */
         nav {
-            background-color: #34495e; /* Colore coordinato con l'header */
+            background-color: #34495e;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombra per un effetto più moderno */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         nav a {
@@ -47,159 +89,511 @@
             display: block;
             color: white;
             text-align: center;
-            padding: 16px 20px; /* Più spazio tra i link */
+            padding: 16px 20px;
             text-decoration: none;
-            font-size: 1.1rem; /* Testo più grande */
-            transition: background-color 0.3s; /* Transizione al passaggio del mouse */
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
         }
 
         nav a:hover {
-            background-color: #1abc9c; /* Colore al passaggio del mouse */
+            background-color: #1abc9c;
         }
 
-        /* Sezioni */
         section {
-            padding: 40px 20px 40px 10px; /* Riduci il padding a sinistra */
-            margin: 0;
-            text-align: left; /* Allinea tutto a sinistra */
+            padding: 40px 20px;
+            margin: 0 auto;
+            max-width: 1200px;
         }
 
         section h2 {
-            color: #2c3e50; /* Colore coordinato con l'header */
-            font-size: 2rem; /* Titolo più grande */
-            margin-bottom: 20px; /* Più spazio sotto il titolo */
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: #1abc9c;
+            margin: 15px auto;
         }
 
         section p, section ul {
-            font-size: 1.1rem; /* Testo più grande */
-            margin-bottom: 20px; /* Più spazio tra i paragrafi */
+            font-size: 1.1rem;
+            margin-bottom: 20px;
         }
 
         section ul {
-            padding-left: 20px; /* Spaziatura per le liste */
+            padding-left: 20px;
         }
 
         section ul li {
-            margin-bottom: 10px; /* Più spazio tra gli elementi della lista */
-        }
-
-        /* Galleria */
-        .gallery img {
-            width: 100%;
-            max-width: 300px;
-            margin: 10px;
-            border-radius: 8px; /* Bordi arrotondati per le immagini */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombra per un effetto più moderno */
-        }
-
-        .gallery li {
-            list-style-type: none; /* Rimuove i pallini della lista */
-            font-size: 1.1rem;
             margin-bottom: 10px;
+        }
+
+        /* Gallery Styles */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Personaggi Section */
+        .personaggi-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .personaggio-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .personaggio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .personaggio-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .personaggio-content {
+            padding: 20px;
+        }
+
+        .personaggio-content h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            nav a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+            
+            .personaggi-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Intestazione -->
-    <header>
-        <h1>Trieste</h1>
-        <p>La città più bella del mondo</p>
-    </header>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Trieste</h1>
+            <p>La città più bella del mondo</p>
+        </div>
+    </div>
 
-    <!-- Menu di navigazione -->
     <nav>
         <a href="#città">La città</a>
         <a href="#storia">La storia</a>
-        <a href="#cose-da-vedere">Le cose da vedere</a>
-        <a href="#cibo">Le pietanze</a>
-        <a href="#attività">Attività ed eventi</a>
+        <a href="#personaggi">Personaggi</a>
+        <a href="#cose">Cose da vedere</a>
+        <a href="#cibo">La cucina</a>
+        <a href="#curiosità">Curiosità</a>
     </nav>
 
-    <!-- Sezione: La città -->
     <section id="città">
         <h2>La città</h2>
         <p>
-            Trieste, città di frontiera e crocevia di culture, è un gioiello affacciato sull'Adriatico.
-            Con il suo fascino mitteleuropeo, le influenze italiane, slave e austro-ungariche, e un passato ricco di storia, Trieste è un luogo che conquista il cuore di chi la visita. 
-            Dalle imponenti piazze affacciate sul mare ai vicoli pieni di charme, dai caffè storici ai panorami mozzafiato, ogni angolo racconta una storia.
+            Trieste è una città che incanta per la sua posizione unica, sospesa tra il mare Adriatico e l'altopiano del Carso. 
+            Il suo passato cosmopolita, la sua cultura mitteleuropea e la sua bellezza architettonica la rendono una destinazione imperdibile. 
+            Con influenze italiane, austriache, slovene e ungheresi, Trieste è un mosaico di tradizioni, architetture e storie. 
+            La città è stata per secoli il principale porto dell'Impero Austro-Ungarico, un ruolo che le ha conferito un'impronta mitteleuropea ancora oggi visibile nei suoi caffè storici, nei palazzi neoclassici e nelle piazze maestose. 
+            Trieste è anche una città di frontiera, un luogo dove culture e lingue si incontrano, creando un'atmosfera unica. 
+            Oggi, è un importante polo scientifico, grazie a istituzioni come il Sincrotrone Elettra e l'International Centre for Theoretical Physics (ICTP), e una meta turistica sempre più apprezzata per il suo mix di storia, cultura e natura. 
+            La città è un vero e proprio crogiolo di identità, dove il passato e il presente si fondono in modo armonioso, offrendo ai visitatori un'esperienza indimenticabile.
+            Trieste è una città che offre un mix unico di storia, cultura e natura. Con questa guida completa, potrai scoprire ogni angolo di questo gioiello affacciato sul mare Adriatico, immergendoti nella sua atmosfera magica e senza tempo. Dalle sue piazze maestose ai suoi caffè storici, dai suoi monumenti iconici alle sue tradizioni gastronomiche, Trieste è una città che sa conquistare il cuore di chi la visita.
         </p>
-    </section>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Trieste_from_its_castle_01.jpg/1200px-Trieste_from_its_castle_01.jpg" alt="Vista di Trieste">
+                <div class="gallery-caption">Vista panoramica di Trieste dal Castello di San Giusto</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.viaggiareinpuglia.info/wp-content/uploads/2021/03/Trieste-Piazza-Unita-dItalia.jpg" alt="Piazza Unità d'Italia">
+                <div class="gallery-caption">Piazza Unità d'Italia di notte</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.turismofvg.it/wp-content/uploads/2019/12/trieste-canal-grande-1100x733.jpg" alt="Canal Grande">
+                <div class="gallery-caption">Il Canal Grande nel Borgo Teresiano</div>
+            </div>
+        </div>
+     </section>
 
-    <!-- Sezione: La storia -->
     <section id="storia">
         <h2>La storia</h2>
+        <ul>
+            <li>Epoca Romana (II sec. a.C.)</li>
         <p>
-            Trieste, città dal fascino unico, vanta una storia millenaria che riflette la sua posizione strategica tra il Mediterraneo e l'Europa centrale. 
-            Le sue origini risalgono all'epoca romana, quando fu fondata come Tergeste, un insediamento fortificato che fungeva da importante avamposto commerciale e militare.
-            Con il crollo dell'Impero Romano, Trieste attraversò un periodo di instabilità, passando sotto il controllo di diverse potenze, tra cui i Longobardi e i Franchi.
-            Il vero turning point nella storia della città avvenne nel 1382, quando Trieste si pose sotto la protezione degli Asburgo, diventando parte dell'Impero Austro-Ungarico. 
-            Questo segnò l'inizio di un'epoca di grande sviluppo economico e culturale. Sotto il dominio asburgico, Trieste divenne uno dei porti più importanti d'Europa, un crocevia di merci, idee e popoli. 
-            La città si trasformò in un vivace centro multiculturale, attirando mercanti, artisti e intellettuali da tutto il mondo.
-            Nel XIX secolo, Trieste visse il suo periodo d'oro. La costruzione della ferrovia Vienna-Trieste e l'istituzione del porto franco ne consolidarono il ruolo di hub commerciale. 
-            La città si arricchì di palazzi neoclassici, teatri e caffè storici, diventando un simbolo dell'eleganza mitteleuropea. 
-            Tuttavia, il crollo dell'Impero Austro-Ungarico dopo la Prima Guerra Mondiale portò all'annessione di Trieste all'Italia nel 1918, un evento che segnò profondamente l'identità della città.
-            Durante la Seconda Guerra Mondiale, Trieste fu teatro di aspri conflitti e occupazioni, prima dai nazisti e poi dalle truppe jugoslave. 
-            La città divenne un simbolo della Guerra Fredda, contesa tra Italia e Jugoslavia, fino al 1954, quando fu definitivamente restituita all'Italia con il Memorandum di Londra.
-            Oggi, Trieste è una città che guarda al futuro senza dimenticare il suo passato. È un centro di eccellenza scientifica, con istituzioni come la SISSA e l'ICTP, e un luogo dove convivono tradizioni italiane, slave e mitteleuropee. 
-            La sua storia è visibile in ogni angolo, dai resti romani ai palazzi asburgici, dai caffè storici ai monumenti che raccontano secoli di incontri e scontri tra culture.
+            Trieste nasce come colonia romana con il nome di Tergeste, derivato dalla parola illirica terg, che significa "mercato". La sua posizione strategica, tra il mare e il Carso, la rese un importante nodo commerciale e militare. Durante l'epoca romana, la città si arricchì di monumenti come l'Arco di Riccardo, un arco trionfale ancora visibile oggi, e il teatro romano, situato ai piedi del colle di San Giusto. Questi resti testimoniano l'importanza di Trieste come centro urbano e culturale già in epoca antica. La città era un punto di passaggio cruciale per le rotte commerciali che collegavano l'Italia centrale con l'Europa orientale, e la sua importanza crebbe ulteriormente durante il periodo imperiale. Il teatro romano, ad esempio, poteva ospitare fino a 6.000 spettatori ed era utilizzato per spettacoli e assemblee pubbliche. L'Arco di Riccardo, invece, è uno dei pochi resti romani ancora intatti e rappresenta un simbolo della città antica.
         </p>
-    </section>
+            <li>1382 - La protezione dell'Impero Asburgico</li>
+        <p>
+            Nel 1382, minacciata dall'espansione della Repubblica di Venezia, Trieste chiese la protezione dell'Impero Asburgico. Questo segnò l'inizio di un lungo dominio austriaco che durò oltre 500 anni. Sotto gli Asburgo, Trieste si trasformò da piccolo borgo di pescatori in uno dei principali porti del Mediterraneo. La città divenne un crocevia di culture e commerci, attirando mercanti, artisti e intellettuali da tutta Europa. Il dominio asburgico portò anche alla costruzione di importanti infrastrutture, come il porto e il Canal Grande, che ancora oggi caratterizzano il volto della città. Il Canal Grande, costruito nel XVIII secolo, era il cuore del Borgo Teresiano, il quartiere voluto da Maria Teresa d'Austria per espandere la città e favorire il commercio. Questo periodo segnò l'inizio dell'ascesa di Trieste come città cosmopolita e multiculturale.
+        </p>
+            <li>XVIII-XIX sec. - Il periodo di Maria Teresa d'Austria</li>
+        <p>
+            Durante il regno di Maria Teresa d'Austria, Trieste visse un periodo di grande sviluppo. La sovrana illuminata concesse alla città lo status di porto franco, favorendo il commercio e l'immigrazione. Trieste divenne un centro cosmopolita, con una fiorente comunità ebraica, greca e armena. In questo periodo furono costruiti alcuni dei simboli della città, come Piazza Unità d'Italia e il Canal Grande, che ancora oggi testimoniano la grandezza di quell'epoca. Maria Teresa promosse anche la costruzione di strade, scuole e ospedali, trasformando Trieste in una città moderna e vivace. La Piazza Unità d'Italia, ad esempio, è la più grande piazza affacciata sul mare in Europa e rappresenta il cuore politico e sociale della città. Il suo design elegante e maestoso riflette l'importanza di Trieste come centro dell'Impero Austro-Ungarico.
+        </p>
+            <li>1918 - L'annessione al Regno d'Italia</li>
+        <p>
+            Dopo la Prima Guerra Mondiale, Trieste fu annessa al Regno d'Italia. Questo evento, celebrato come la "redenzione" della città, portò però a tensioni con la comunità slovena locale, che rappresentava una parte significativa della popolazione. Il periodo fascista fu segnato da politiche di italianizzazione forzata, che crearono ulteriori divisioni. Nonostante ciò, Trieste rimase un importante centro culturale e commerciale, mantenendo il suo carattere cosmopolita. La città divenne anche un simbolo dell'irredentismo italiano, con molti triestini che si schierarono a favore dell'annessione all'Italia. Tuttavia, le tensioni con la comunità slovena e le politiche repressive del regime fascista lasciarono un segno profondo nella storia della città.
+        </p>
+            <li>1943-1945 - L'occupazione nazista e la Risiera di San Sabba</li>
+        <p>
+            Durante la Seconda Guerra Mondiale, Trieste fu occupata dalle truppe naziste, che trasformarono la Risiera di San Sabba in un campo di concentramento e sterminio. La Risiera, un ex stabilimento per la pilatura del riso, divenne l'unico campo di concentramento in Italia con un forno crematorio. Migliaia di persone, tra ebrei, partigiani e oppositori politici, furono qui imprigionate, torturate e uccise. Oggi la Risiera è un museo e un memoriale, un luogo di riflessione e ricordo. La sua visita è un'esperienza toccante e necessaria per comprendere una delle pagine più buie della storia europea. La Risiera di San Sabba rappresenta un monito contro l'odio e la violenza, e un luogo di memoria per le generazioni future.
+        </p>
+            <li>1945-1954 - Il periodo titino e le foibe</li>
+        <p>
+            Dopo la caduta del nazismo, Trieste fu occupata dalle truppe jugoslave di Tito. Questo periodo fu segnato da violenze e repressioni, culminate nelle foibe, cavità naturali del Carso dove furono gettati migliaia di italiani, sloveni e croati considerati nemici del regime. Le foibe rappresentano una delle pagine più dolorose della storia di Trieste e dell'Italia. Oggi, il Monumento Nazionale della Foiba di Basovizza è un luogo di memoria e riflessione, dedicato alle vittime di queste tragedie. Le foibe sono un capitolo oscuro della storia europea, che ha lasciato un segno profondo nella memoria collettiva della città e del Paese.
+        </p>
+            <li>1947 - Il Territorio Libero di Trieste</li>
+        <p>
+            Dopo la Seconda Guerra Mondiale, Trieste divenne un Territorio Libero sotto il controllo delle Nazioni Unite. Questo periodo di incertezza durò fino al 1954, quando la città fu ufficialmente restituita all'Italia. La questione del confine con la Jugoslavia rimase però irrisolta fino al Trattato di Osimo del 1975. Durante questi anni, Trieste visse un momento di grande fermento culturale, diventando un rifugio per artisti e intellettuali. La città divenne un simbolo della Guerra Fredda, con tensioni tra Est e Ovest che si riflettevano nella vita quotidiana dei suoi abitanti.
+        </p>
+            <li>Oggi - Una città multiculturale</li>
+        <p>
+            Oggi Trieste è una città multiculturale, un importante polo scientifico e una destinazione turistica di grande fascino. La sua storia complessa e il suo ruolo di frontiera la rendono un luogo unico, dove culture e tradizioni si intrecciano in modo armonioso. La città è anche un centro di ricerca di rilievo internazionale, grazie a istituzioni come il Sincrotrone Elettra e l'ICTP. Trieste è una città che guarda al futuro senza dimenticare il passato, offrendo ai visitatori un'esperienza ricca di storia, cultura e bellezza.
+        </p>
+        </ul>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://www.ilpiccolo.it/photos/MED_HIGH/2018/02/10/101911806_3_1_0.jpg" alt="Trieste storica">
+                <div class="gallery-caption">Trieste nell'800</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.triesteprima.it/assets/uploads/images/gallery_medium/2019/05/risiera-di-san-sabba-esterno.jpg" alt="Risiera di San Sabba">
+                <div class="gallery-caption">Risiera di San Sabba</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.triestecafe.it/wp-content/uploads/2018/10/trieste-anni-50.jpg" alt="Trieste anni '50">
+                <div class="gallery-caption">Trieste negli anni '50</div>
+            </div>
+        </div>
+     </section>
 
-    <!-- Sezione: Le cose da vedere -->
-    <section id="cose-da-vedere">
+    <section id="personaggi">
+        <h2>Personaggi</h2>
+        
+        <div class="personaggi-container">
+            <div class="personaggio-card">
+                <img class="personaggio-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Italo_Svevo.jpg/440px-Italo_Svevo.jpg" alt="Italo Svevo">
+                <div class="personaggio-content">
+                    <h3>Italo Svevo</h3>
+                    <p>
+                        Italo Svevo, pseudonimo di Ettore Schmitz, è uno dei più importanti scrittori italiani del Novecento. La sua opera più celebre, La coscienza di Zeno, è un capolavoro della letteratura moderna che esplora la psicologia umana con ironia e profondità. Svevo visse a Trieste per gran parte della sua vita, e la città è spesso protagonista dei suoi romanzi. La sua scrittura riflette l'atmosfera mitteleuropea di Trieste, con i suoi contrasti e le sue contraddizioni.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="personaggio-card">
+                <img class="personaggio-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/James_Joyce_by_Alex_Ehrenzweig%2C_1915_cropped.jpg/440px-James_Joyce_by_Alex_Ehrenzweig%2C_1915_cropped.jpg" alt="James Joyce">
+                <div class="personaggio-content">
+                    <h3>James Joyce</h3>
+                    <p>
+                        James Joyce, il celebre autore irlandese, visse a Trieste per oltre un decennio, dal 1904 al 1915. Qui insegnò inglese e scrisse gran parte dell'Ulisse, uno dei romanzi più influenti del XX secolo. Trieste ebbe un profondo impatto su Joyce, che la definì "la mia seconda patria". La città gli offrì ispirazione e tranquillità, permettendogli di sviluppare il suo stile unico e rivoluzionario.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="personaggio-card">
+                <img class="personaggio-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Umberto_Saba_1930.jpg/440px-Umberto_Saba_1930.jpg" alt="Umberto Saba">
+                <div class="personaggio-content">
+                    <h3>Umberto Saba</h3>
+                    <p>
+                        Umberto Saba, pseudonimo di Umberto Poli, è uno dei poeti più amati della letteratura italiana. Il suo Canzoniere è una raccolta di poesie che raccontano con grande sensibilità la vita, l'amore e la città di Trieste. Saba visse gran parte della sua vita nella città, dove gestì anche una libreria antiquaria. La sua poesia è intrisa di malinconia e amore per la sua città natale.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="personaggio-card">
+                <img class="personaggio-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Maria_Theresia11.jpg/440px-Maria_Theresia11.jpg" alt="Maria Teresa d'Austria">
+                <div class="personaggio-content">
+                    <h3>Maria Teresa d'Austria</h3>
+                    <p>
+                        Maria Teresa d'Austria fu una delle figure chiave nella storia di Trieste. Durante il suo regno, la città divenne uno dei principali porti dell'Impero Austro-Ungarico, attirando mercanti e intellettuali da tutta Europa. La sua statua in Piazza Ponterosso è un omaggio al suo ruolo nello sviluppo della città. Maria Teresa è ricordata come una sovrana illuminata, che promosse il progresso e la modernizzazione della città.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="personaggio-card">
+                <img class="personaggio-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Maximilian_I_of_Mexico_in_uniform.jpg/440px-Maximilian_I_of_Mexico_in_uniform.jpg" alt="Massimiliano d'Asburgo">
+                <div class="personaggio-content">
+                    <h3>Massimiliano d'Asburgo</h3>
+                    <p>
+                        Massimiliano d'Asburgo, arciduca d'Austria e imperatore del Messico, è ricordato soprattutto per il Castello di Miramare, la sua residenza triestina. Questo splendido castello, affacciato sul mare, è oggi uno dei simboli della città e una delle attrazioni turistiche più visitate. Massimiliano è una figura tragica e affascinante, la cui vita è stata segnata da ambizioni e delusioni.
+                    </p>
+                </div>
+            </div>
+        </div>
+     </section>
+
+    <section id="cose">
         <h2>Le cose da vedere assolutamente</h2>
-        <p>
-            Ecco i luoghi imperdibili della città:
-        </p>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://www.turismofvg.it/wp-content/uploads/2019/12/piazza-unita-d-italia-1100x733.jpg" alt="Piazza Unità d'Italia">
+                <div class="gallery-caption">Piazza Unità d'Italia</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.turismofvg.it/wp-content/uploads/2019/12/castello-di-miramare-1100x733.jpg" alt="Castello di Miramare">
+                <div class="gallery-caption">Castello di Miramare</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.turismofvg.it/wp-content/uploads/2019/12/cattedrale-di-san-giusto-1100x733.jpg" alt="Cattedrale di San Giusto">
+                <div class="gallery-caption">Cattedrale di San Giusto</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.triesteprima.it/assets/uploads/images/gallery_medium/2019/05/pedocin.jpg" alt="Pedocin">
+                <div class="gallery-caption">Il Pedocin</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.turismofvg.it/wp-content/uploads/2019/12/grotta-gigante-1100x733.jpg" alt="Grotta Gigante">
+                <div class="gallery-caption">Grotta Gigante</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.turismofvg.it/wp-content/uploads/2019/12/teatro-romano-1100x733.jpg" alt="Teatro Romano">
+                <div class="gallery-caption">Teatro Romano</div>
+            </div>
+        </div>
+        
         <ul>
-            <li>Piazza Unità d'Italia: una delle piazze più grandi d'Europa affacciate sul mare, circondata da palazzi storici.</li>
-            <li>Castello di Miramare: un castello fiabesco costruito per Massimiliano d'Asburgo, con un parco panoramico sul Golfo di Trieste.</li>
-            <li>Cattedrale di San Giusto: un simbolo della città, con affreschi medievali e una vista spettacolare dal colle omonimo.</li>
-            <li>Pedocin: uno dei bagni storici di Trieste, l'unico in Europa con ancora un muro che divide gli uomini e le donne.</li>
-            <li>Grotta Gigante: una delle grotte turistiche più grandi al mondo, con stalattiti e stalagmiti impressionanti.</li>
-            <li>Teatro Romano: resti di un antico teatro romano nel cuore della città.</li>
-            <li>Molo Audace: un molo iconico dove passeggiare e godersi il mare.</li>
-            <li>Risiera di San Sabba: un ex campo di concentramento, oggi museo e memoriale.</li>
-            <li>Borgo Teresiano: un quartiere elegante con canali, negozi e caffè storici.</li>
-            <li>Colle di San Giusto: un punto panoramico per ammirare la città e il mare.</li>
+            <li>Piazza Unità d'Italia</li>
+            <p>
+                Piazza Unità d'Italia è una delle piazze più suggestive d'Europa e il cuore pulsante di Trieste. Circondata da imponenti palazzi neoclassici e affacciata direttamente sul mare, è la più grande piazza affacciata sul mare in Europa. Di sera, quando è illuminata, regala un'atmosfera magica, con i riflessi delle luci sull'acqua del Golfo di Trieste.
+            </p>
+            
+            <li>Castello di Miramare</li>
+            <p>
+                Il Castello di Miramare è uno dei simboli più iconici di Trieste. Costruito tra il 1856 e il 1860 per volere di Massimiliano d'Asburgo, arciduca d'Austria e imperatore del Messico, il castello è un capolavoro architettonico immerso in un parco di 22 ettari. Gli interni sono arredati con mobili d'epoca, opere d'arte e oggetti personali di Massimiliano e della moglie Carlotta.
+            </p>
+            
+            <li>Cattedrale di San Giusto</li>
+            <p>
+                La Cattedrale di San Giusto, situata sulla sommità del colle omonimo, è uno dei simboli religiosi e storici più importanti di Trieste. Costruita nel XIV secolo sui resti di una basilica paleocristiana e di un tempio romano, la cattedrale è un mix di stili romanico e gotico. All'interno si trovano affreschi medievali, mosaici e opere d'arte di grande bellezza.
+            </p>
+            
+            <li>Pedocin</li>
+            <p>
+                Il Pedocin è l'unica spiaggia d'Europa con una separazione tra uomini e donne. Questo curioso retaggio del passato è ancora oggi una delle peculiarità della città. La spiaggia, situata nel cuore di Trieste, è un luogo popolare tra i triestini, che qui si ritrovano per prendere il sole e fare il bagno.
+            </p>
+            
+            <li>Grotta Gigante</li>
+            <p>
+                La Grotta Gigante è una delle grotte turistiche più grandi al mondo, con stalattiti e stalagmiti impressionanti. Situata a pochi chilometri dal centro di Trieste, questa grotta è una meta imperdibile per gli amanti della natura e della speleologia. Scoperta nel 1840, la Grotta Gigante è stata aperta al pubblico nel 1908 e oggi è attrezzata per visite guidate.
+            </p>
+            
+            <li>Teatro Romano</li>
+            <p>
+                Il Teatro Romano, situato ai piedi del colle di San Giusto, è uno dei resti più importanti dell'epoca romana. Costruito nel I secolo d.C., il teatro poteva ospitare fino a 6.000 spettatori ed era utilizzato per rappresentazioni teatrali e assemblee pubbliche. Oggi è un luogo di storia e cultura, che racconta secoli di vita triestina.
+            </p>
+            
+            <li>Molo Audace</li>
+            <p>
+                Il Molo Audace è una passeggiata romantica che si protende nel mare Adriatico. Costruito nel XVIII secolo, il molo prende il nome dalla prima nave italiana che vi attraccò nel 1918, dopo l'annessione di Trieste al Regno d'Italia. È il luogo ideale per ammirare il tramonto o semplicemente godersi il rumore delle onde.
+            </p>
+            
+            <li>Risiera di San Sabba</li>
+            <p>
+                La Risiera di San Sabba è un ex campo di concentramento, oggi museo e memoriale. Durante la Seconda Guerra Mondiale, la Risiera fu trasformata dalle truppe naziste in un luogo di detenzione, tortura e sterminio. Migliaia di persone, tra ebrei, partigiani e oppositori politici, furono qui imprigionate e uccise.
+            </p>
+            
+            <li>Borgo Teresiano</li>
+            <p>
+                Il Borgo Teresiano è un quartiere elegante con canali, negozi e caffè storici. Costruito nel XVIII secolo per volere di Maria Teresa d'Austria, il Borgo Teresiano è il cuore commerciale e culturale di Trieste. Qui si trovano alcuni dei luoghi più iconici della città, come il Canal Grande, un canale navigabile che attraversa il quartiere.
+            </p>
+            
+            <li>Colle di San Giusto</li>
+            <p>
+                Il Colle di San Giusto è un punto panoramico per ammirare la città e il mare. Qui si trovano alcuni dei simboli più importanti di Trieste, come la Cattedrale di San Giusto e il Castello di San Giusto. La cattedrale, costruita nel XIV secolo, è un mix di stili romanico e gotico, con affreschi medievali e mosaici di grande bellezza.
+            </p>
+            
+            <li>Faro della Vittoria</li>
+            <p>
+                Il Faro della Vittoria è uno dei simboli più iconici di Trieste. Costruito nel 1927 per commemorare i caduti della Prima Guerra Mondiale, il faro si trova sulla sommità del colle di Gretta, a 60 metri sopra il livello del mare. Con un'altezza di 68 metri, è uno dei fari più alti del mondo.
+            </p>
+            
+            <li>Museo Revoltella</li>
+            <p>
+                Il Museo Revoltella è una delle più importanti gallerie d'arte moderna e contemporanea d'Italia. Fondato nel 1872 per volere del barone Pasquale Revoltella, il museo ospita una vasta collezione di dipinti, sculture e opere d'arte dal XIX secolo ai giorni nostri.
+            </p>
+            
+            <li>Tram di Opicina</li>
+            <p>
+                Il Tram di Opicina è uno dei pochi tram a cremagliera ancora in funzione in Europa. Inaugurato nel 1902, collega Trieste con l'altopiano di Opicina, offrendo un viaggio panoramico attraverso il Carso. Il tram è un'esperienza unica, che ti permette di ammirare paesaggi spettacolari e di immergerti nella storia dei trasporti triestini.
+            </p>
         </ul>
-    </section>
+     </section>
 
-    <!-- Sezione: Le pietanze -->
     <section id="cibo">
-        <h2>Le pietanze</h2>
-        <p>
-            La cucina triestina è un mix di sapori italiani, mitteleuropei e balcanici. Ecco i piatti da provare:
-        </p>
+        <h2>La cucina triestina e le tradizioni gastronomiche</h2>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://www.turismofvg.it/wp-content/uploads/2019/12/jota-1100x733.jpg" alt="Jota">
+                <div class="gallery-caption">Jota triestina</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.turismofvg.it/wp-content/uploads/2019/12/goulash-1100x733.jpg" alt="Goulasch">
+                <div class="gallery-caption">Goulasch triestino</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.turismofvg.it/wp-content/uploads/2019/12/strucolo-de-pomi-1100x733.jpg" alt="Strucolo de pomi">
+                <div class="gallery-caption">Strucolo de pomi</div>
+            </div>
+        </div>
+        
         <ul>
-            <li>Jota: una zuppa di fagioli, crauti e patate, di origine slovena.</li>
-            <li>Goulasch: uno spezzatino di carne piccante, eredità della cucina austro-ungarica.</li>
-            <li>Prosciutto di San Daniele: un prosciutto crudo famoso in tutto il mondo.</li>
-            <li>Frico: una frittella di formaggio e patate, tipica del Friuli-Venezia Giulia.</li>
-            <li>Presa in Blesa: un piatto di maiale cotto con cipolle e spezie.</li>
-            <li>Strucolo de Pomi: lo strudel di mele, un dolce di origine austriaca.</li>
-            <li>Caffè: Trieste è famosa per i suoi caffè storici, come il Caffè San Marco e il Caffè degli Specchi. Prova un capo in b (cappuccino in dialetto triestino).</li>
-            <li>Pinza: un dolce semplice a base di farina, uvetta e fichi.</li>
-            <li>Sardoni in savor: sardine marinate in una salsa agrodolce.</li>
-            <li>Putizza: un dolce a base di noci, uvetta e cioccolato, di origine slovena.</li>
+            <li>Jota</li>
+            <p>
+                La jota è una zuppa rustica e sostanziosa, simbolo della cucina triestina. Preparata con crauti, fagioli, patate, pancetta e costine di maiale, è un piatto dal sapore intenso e inconfondibile. La jota riflette l'influenza mitteleuropea sulla cucina locale, con i crauti che ricordano le tradizioni austriache e ungheresi.
+            </p>
+            
+            <li>Goulasch</li>
+            <p>
+                Il goulasch triestino è una versione locale dello stufato ungherese, arricchito con spezie e servito con polenta. Questo piatto sostanzioso è perfetto per chi cerca un pasto ricco di sapori e tradizione. Il goulasch viene preparato con carne di manzo, cipolle, paprika e altre spezie.
+            </p>
+            
+            <li>Strucolo de Pomi</li>
+            <p>
+                Lo strucolo de pomi è la versione triestina dello strudel di mele, un dolce amato da grandi e piccini. Preparato con una pasta sottile e un ripieno di mele, cannella, uvetta e pinoli, è un dessert che profuma di casa e tradizione.
+            </p>
+            
+            <li>Sardoni Impanai</li>
+            <p>
+                I sardoni impanai sono alici fritte, tipiche della cucina triestina. Questo piatto semplice ma gustoso viene spesso servito come antipasto o secondo piatto, accompagnato da una fetta di limone e un bicchiere di vino bianco.
+            </p>
+            
+            <li>Calamari ripieni alla triestina</li>
+            <p>
+                I calamari ripieni alla triestina sono un piatto di mare gustoso e raffinato. I calamari vengono farciti con un ripieno di pane, aglio, prezzemolo e uova, e poi cotti in umido con pomodoro e vino bianco.
+            </p>
+            
+            <li>Caffè triestino</li>
+            <p>
+                Il caffè triestino è un'arte con termini propri come "capo in B" (cappuccino in bicchiere) e "nero in B" (caffè ristretto in bicchiere). I caffè storici di Trieste, come il Caffè San Marco e il Caffè Tommaseo, sono luoghi iconici dove assaporare questa tradizione.
+            </p>
+            
+            <li>Osmize</li>
+            <p>
+                Le osmize sono antiche cantine carsiche dove gustare vini locali e prodotti tipici direttamente dai produttori. Queste osterie temporanee, aperte solo per pochi giorni all'anno, offrono un'esperienza autentica e genuina.
+            </p>
+            
+            <li>Piatti di mare</li>
+            <p>
+                Trieste, affacciata sull'Adriatico, offre una vasta gamma di piatti di mare. Dal branzino al sale alle cozze alla triestina, passando per il risotto ai frutti di mare, la cucina marinara della città è ricca e variegata.
+            </p>
+            
+            <li>Dolci tipici</li>
+            <p>
+                Oltre allo strucolo de pomi, Trieste offre una vasta gamma di dolci tipici. Il presnitz è un dolce a base di pasta sfoglia ripiena di noci, uvetta e spezie, mentre la pinza è una torta semplice ma deliziosa, preparata con farina, uova e zucchero.
+            </p>
+            
+            <li>Vini del Carso</li>
+            <p>
+                I vini del Carso sono un'eccellenza della regione. Il Terrano, un vino rosso corposo e fruttato, è il più famoso, ma non bisogna dimenticare il Vitovska, un vino bianco fresco e aromatico.
+            </p>
         </ul>
-    </section>
+     </section>
 
-    <!-- Sezione: Attività ed eventi -->
-    <section id="attività">
-        <h2>Attività ed eventi</h2>
-        <p>
-            Trieste è vivace tutto l'anno, con eventi che celebrano la sua cultura e tradizioni:
-        </p>
+    <section id="curiosità">
+        <h2>Curiosità</h2>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://www.triesteprima.it/assets/uploads/images/gallery_medium/2019/05/bora-a-trieste.jpg" alt="Bora a Trieste">
+                <div class="gallery-caption">La Bora a Trieste</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.triesteprima.it/assets/uploads/images/gallery_medium/2019/05/caffe-sanmarco.jpg" alt="Caffè San Marco">
+                <div class="gallery-caption">Caffè San Marco</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.triesteprima.it/assets/uploads/images/gallery_medium/2019/05/palazzo-carciotti.jpg" alt="Palazzo Carciotti">
+                <div class="gallery-caption">Palazzo Carciotti con simboli massonici</div>
+            </div>
+        </div>
+        
         <ul>
-            <li>Barcolana (ottobre): La più grande regata velica del Mediterraneo, con migliaia di partecipanti e spettatori.</li>
-            <li>Trieste Film Festival (gennaio): Un festival dedicato al cinema dell'Europa centro-orientale.</li>
-            <li>Festa di San Giusto (novembre): Celebrazioni in onore del patrono della città.</li>
-            <li>Trieste Science+Fiction Festival (autunno): Un evento dedicato alla fantascienza e al cinema fantastico.</li>
-            <li>Estate Triestina: Concerti, spettacoli teatrali e proiezioni all'aperto in tutta la città.</li>
+            <li>La Bora</li>
+            <p>
+                La Bora è il vento caratteristico di Trieste, che può raggiungere velocità superiori ai 150 km/h. È un fenomeno meteorologico che ha influenzato la vita e la cultura della città. La Bora è spesso protagonista di storie e leggende locali, e i triestini hanno imparato a convivere con questo vento impetuoso.
+            </p>
+            
+            <li>Il dialetto triestino</li>
+            <p>
+                Il dialetto triestino è un mix di italiano, sloveno e tedesco, con espressioni uniche che riflettono la storia multiculturale della città. Alcune parole tipiche sono "bora" (vento), "jota" (zuppa) e "strucolo" (strudel). Il dialetto triestino è ancora oggi parlato da molti abitanti della città.
+            </p>
+            
+            <li>Massoneria ed esoterismo</li>
+            <p>
+                Trieste è legata a molte storie misteriose, legate alla massoneria e all'esoterismo. Alcuni edifici della città, come il Palazzo Carciotti e il Tempio Mariano, presentano simboli massonici e riferimenti esoterici.
+            </p>
         </ul>
-    </section>
+     </section>
 
 </body>
 </html>
